@@ -1,6 +1,7 @@
 import expres from "express";
 import frontendRouter from "./routes/frontend.routes.js"
-import userRouter from "./routes/user.routes.js";
+import authRoute from "./routes/auth.routes.js";
+import usersRouter from "./routes/users.route.js";
 import expressLayouts from "express-ejs-layouts";
 import connectDB from "./config/connectDB.js";
 import path from "path";
@@ -17,8 +18,8 @@ app.set("views", path.join(process.cwd(), "views"));
 app.set("view engine", "ejs");
 app.set("layout", "frontend/layouts");
 
-
-app.use("/", userRouter)
+app.use("/admin", authRoute)
+app.use("/", usersRouter)
 app.use("/", frontendRouter)
 
 connectDB();

@@ -1,25 +1,18 @@
 import { Router } from "express";
+import {postByCategory, index, singlePost, postByAuthor, search, addComment} from "../controllers/frontend.controller.js" 
 
 const frontendRouter = Router();
 
-frontendRouter.get("/", (req, res) => {
-  res.render("frontend/index");
-});
+frontendRouter.get("/", index);
 
-frontendRouter.get("/category", (req, res) => {
-  res.render("frontend/category");
-});
+frontendRouter.get("/category/:name", postByCategory);
 
-frontendRouter.get("/author", (req, res) => {
-  res.render("frontend/author");
-});
+frontendRouter.get("/single/:id", singlePost);
 
-frontendRouter.get("/search", (req, res) => {
-  res.render("frontend/search");
-});
+frontendRouter.get("/author/:name", postByAuthor);
 
-frontendRouter.get("/single", (req, res) => {
-  res.render("frontend/single");
-});
+frontendRouter.get("/search", search);
+
+frontendRouter.post("/single/:id", addComment);
 
 export default frontendRouter;
